@@ -231,6 +231,7 @@ MonoBehaviour:
   triggerDistance: 400
   cannonBall: {fileID: 1036341605891932728, guid: 72cc6afdfbf7b774dbafe267883bddeb,
     type: 3}
+  pauseSystem: {fileID: 0}
 --- !u!54 &1978599472823922666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -260,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  waveSystem: {fileID: 0}
 --- !u!65 &5760352525625038463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -267,7 +269,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978599472823922581}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ae0a8cc93926ec6409915eaec08555c4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -298,15 +300,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3011868174337778710}
-  m_LocalRotation: {x: -0.077411585, y: 0.07754662, z: 0.7022356, w: 0.7034624}
-  m_LocalPosition: {x: 0.0010681156, y: 0.6331757, z: 0}
+  m_LocalRotation: {x: -0.048703603, y: 0.048846476, z: 0.70480955, w: 0.7060352}
+  m_LocalPosition: {x: 0.0011062635, y: 0.6543949, z: -0.010421757}
   m_LocalScale: {x: -56.744568, y: -56.74457, z: -36.227634}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9158643484048571561}
   m_Father: {fileID: 1978599472025256895}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.911, y: 0.019, z: 89.899}
 --- !u!33 &5840333292804788819
 MeshFilter:
   m_ObjectHideFlags: 0

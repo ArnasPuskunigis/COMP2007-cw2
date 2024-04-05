@@ -37,6 +37,15 @@ public class followPlayer : MonoBehaviour
     void Update()
     {
 
+        if (pauseSystem.gamePaused)
+        {
+            enemy.speed = 0;
+        }
+        else
+        {
+            enemy.speed = 10;
+        }
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             shootCannonBall();
@@ -55,6 +64,7 @@ public class followPlayer : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0f, angleToPlayer, 0f);
             rotationBase.rotation = targetRotation;
 
+            enemy.speed = 10;
             enemy.SetDestination(player.position);
         }
         else if (Vector3.Distance(transform.position, player.position) <= standingDistance && !pauseSystem.gamePaused)
@@ -70,11 +80,13 @@ public class followPlayer : MonoBehaviour
             rotationBase.rotation = targetRotation;
 
             enemy.ResetPath();
+            enemy.speed = 0;
         }
 
         if (pauseSystem.gamePaused)
         {
             enemy.ResetPath();
+            enemy.speed = 0;
         }
 
     }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class enemyWaves : MonoBehaviour
 {
@@ -20,16 +22,23 @@ public class enemyWaves : MonoBehaviour
 
     public bool isSpawning;
 
+    public TextMeshProUGUI currentWaveText;
+    public TextMeshProUGUI enemiesLeft;
+
+
     // Start is called before the first frame update
     void Start()
     {
         currentWave = 0;
+        currentWaveText.text = "";
+        enemiesLeft.text = "";
     }
 
     public void removeEnemy(GameObject enemy)
     {
         enemiesList.Remove(enemy);
         Destroy(enemy);
+        enemiesLeft.text = "Enemies remaining: " + enemiesList.Count;
     }
 
     // Update is called once per frame
@@ -42,13 +51,14 @@ public class enemyWaves : MonoBehaviour
         }
     }
 
-    public void spawnNewWave(int waveCount)
+    public void spawnNewWave(int waveEnemyCount)
     {
-        for (int i = 0; i < waveCount; i++)
+        for (int i = 0; i < waveEnemyCount; i++)
         {
             int temp = Random.Range(0, spawnPoints.Length - 1);
             enemiesList.Add(Instantiate(enemyPref, spawnPoints[temp].position, spawnPoints[temp].rotation, enemyParent.transform));
         }
+        enemiesLeft.text = "Enemies remaining: " + waveEnemyCount;
         isSpawning = false;
     }
 
@@ -58,21 +68,25 @@ public class enemyWaves : MonoBehaviour
         {
             currentWave++;
             spawnNewWave(wave1EnemyCount);
+            currentWaveText.text = "Current wave: " + 1;
         }
         else if (currentWave == 1)
         {
             currentWave++;
             spawnNewWave(wave2EnemyCount);
+            currentWaveText.text = "Current wave: " + 2;
         }
         else if (currentWave == 2)
         {
             currentWave++;
             spawnNewWave(wave3EnemyCount);
+            currentWaveText.text = "Current wave: " + 3;
         }
         else if (currentWave == 3)
         {
             currentWave++;
             spawnNewWave(wave4EnemyCount);
+            currentWaveText.text = "Current wave: " + 4;
         }
         else
         {
@@ -82,6 +96,8 @@ public class enemyWaves : MonoBehaviour
 
     public void winGame()
     {
+        enemiesLeft.text = "";
+        currentWaveText.text = "Current wave: all enemies defeated!";
         print("winner");
     }
 

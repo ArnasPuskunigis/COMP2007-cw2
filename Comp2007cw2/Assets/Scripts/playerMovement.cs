@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class playerMovement : MonoBehaviour
 {
@@ -36,12 +38,17 @@ public class playerMovement : MonoBehaviour
 
     public pauseManager pauseSystem;
 
+    public TextMeshProUGUI bulletText;
+    public GameObject reloadText;
+
+
     void Start()
     {
         pauseSystem = GameObject.Find("pauseManager").GetComponent<pauseManager>();
         currentBullets = clipSize;
         canShoot = true;
         hasAmmo = true;
+        bulletText.text = (currentBullets + "/" + clipSize);
     }
 
     void Update()
@@ -116,6 +123,17 @@ public class playerMovement : MonoBehaviour
                 canShoot = false;
                 shootingIntervalTimer = 0f;
                 currentBullets -= 1;
+                bulletText.text = (currentBullets + "/" + clipSize);
+            }
+            else if (!hasAmmo)
+            {
+                reloadText.SetActive(true);
+                bulletText.color = Color.red;
+            }
+            else
+            {
+                reloadText.SetActive(false);
+                bulletText.color = Color.white;
             }
         }
 
@@ -133,6 +151,8 @@ public class playerMovement : MonoBehaviour
         canShoot = true;
         isReloading = false;
         hasAmmo = true;
+        bulletText.color = Color.white;
+        bulletText.text = (currentBullets + "/" + clipSize);
     }
 
 }
