@@ -28,7 +28,7 @@ public class followPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Sad Idle").transform;
         cannonBallParent = GameObject.Find("cannonBalls").transform;
         pauseSystem = GameObject.Find("pauseManager").GetComponent<pauseManager>();
     }

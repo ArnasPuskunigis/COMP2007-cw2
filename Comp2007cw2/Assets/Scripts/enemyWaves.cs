@@ -22,7 +22,6 @@ public class enemyWaves : MonoBehaviour
 
     public bool isSpawning;
 
-    public TextMeshProUGUI currentWaveText;
     public TextMeshProUGUI enemiesLeft;
 
 
@@ -30,7 +29,6 @@ public class enemyWaves : MonoBehaviour
     void Start()
     {
         currentWave = 0;
-        currentWaveText.text = "";
         enemiesLeft.text = "";
     }
 
@@ -38,7 +36,7 @@ public class enemyWaves : MonoBehaviour
     {
         enemiesList.Remove(enemy);
         Destroy(enemy);
-        enemiesLeft.text = "Enemies remaining: " + enemiesList.Count;
+        enemiesLeft.text = enemiesList.Count.ToString();
     }
 
     // Update is called once per frame
@@ -58,7 +56,7 @@ public class enemyWaves : MonoBehaviour
             int temp = Random.Range(0, spawnPoints.Length - 1);
             enemiesList.Add(Instantiate(enemyPref, spawnPoints[temp].position, spawnPoints[temp].rotation, enemyParent.transform));
         }
-        enemiesLeft.text = "Enemies remaining: " + waveEnemyCount;
+        enemiesLeft.text = waveEnemyCount.ToString();
         isSpawning = false;
     }
 
@@ -68,25 +66,21 @@ public class enemyWaves : MonoBehaviour
         {
             currentWave++;
             spawnNewWave(wave1EnemyCount);
-            currentWaveText.text = "Current wave: " + 1;
         }
         else if (currentWave == 1)
         {
             currentWave++;
             spawnNewWave(wave2EnemyCount);
-            currentWaveText.text = "Current wave: " + 2;
         }
         else if (currentWave == 2)
         {
             currentWave++;
             spawnNewWave(wave3EnemyCount);
-            currentWaveText.text = "Current wave: " + 3;
         }
         else if (currentWave == 3)
         {
             currentWave++;
             spawnNewWave(wave4EnemyCount);
-            currentWaveText.text = "Current wave: " + 4;
         }
         else
         {
@@ -96,8 +90,7 @@ public class enemyWaves : MonoBehaviour
 
     public void winGame()
     {
-        enemiesLeft.text = "";
-        currentWaveText.text = "Current wave: all enemies defeated!";
+        enemiesLeft.text = "0";
         print("winner");
     }
 

@@ -13,11 +13,12 @@ public class playerHealth : MonoBehaviour
 
     public TextMeshProUGUI healthText;
 
+    public Animator characterAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        healthText.text = health + "/" + maxHealth;
+        healthText.text = health.ToString();
     }
 
     // Update is called once per frame
@@ -31,14 +32,16 @@ public class playerHealth : MonoBehaviour
         if (collision.collider.tag.Equals("cannonBall"))
         {
             health -= 10;
+            characterAnim.SetTrigger("Shot");
         }
 
         if (health <= 0)
         {
             playerDead();
+            characterAnim.SetTrigger("Dead");
         }
 
-        healthText.text = health + "/" + maxHealth;
+        healthText.text = health.ToString();
     }
 
     public void playerDead()

@@ -41,6 +41,8 @@ public class playerMovement : MonoBehaviour
     public TextMeshProUGUI bulletText;
     public GameObject reloadText;
 
+    public Animator characterAnim;
+
 
     void Start()
     {
@@ -61,6 +63,7 @@ public class playerMovement : MonoBehaviour
             if (characterController.isGrounded && Input.GetButtonDown("Jump") && !pauseSystem.gamePaused)
             {
                 verticalVelocity = jumpSpeed;
+                characterAnim.SetTrigger("Jumping");
             }
             verticalVelocity -= gravity * Time.deltaTime;
 
@@ -76,6 +79,8 @@ public class playerMovement : MonoBehaviour
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmooth);
                 transform.rotation = Quaternion.Euler(0f, playerCamera.eulerAngles.y, 0f);
+                characterAnim.SetBool("Walking", true);
+                characterAnim.SetBool("Idle", false);
 
                 if (!boatDrivingScript.isDriving)
                 {
@@ -85,6 +90,8 @@ public class playerMovement : MonoBehaviour
             }
             else
             {
+                characterAnim.SetBool("Walking", false);
+                characterAnim.SetBool("Idle", true);
                 if (!pauseSystem.gamePaused)
                 {
                     transform.rotation = Quaternion.Euler(0f, playerCamera.eulerAngles.y, 0f);
@@ -118,7 +125,7 @@ public class playerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Fire1") && canShoot && hasAmmo && !isReloading && !pauseSystem.gamePaused)
             {
-                print("shot");
+                characterAnim.SetTrigger("Shooting");
                 Instantiate(bullet, firePoint.position, playerCamera.transform.rotation, bulletParent.transform);
                 canShoot = false;
                 shootingIntervalTimer = 0f;
