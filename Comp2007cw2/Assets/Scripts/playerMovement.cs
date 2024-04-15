@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,12 +55,15 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+
+        //Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 100f, Color.red, 0.5f);
+
         if (!pauseSystem.gamePaused)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
-            if (characterController.isGrounded && Input.GetButtonDown("Jump") && !pauseSystem.gamePaused)
+            if (characterController.isGrounded && Input.GetButtonDown("Jump") && !pauseSystem.gamePaused && !boatDrivingScript.isDriving)
             {
                 verticalVelocity = jumpSpeed;
                 characterAnim.SetTrigger("Jumping");
@@ -79,19 +82,37 @@ public class playerMovement : MonoBehaviour
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmooth);
                 transform.rotation = Quaternion.Euler(0f, playerCamera.eulerAngles.y, 0f);
-                characterAnim.SetBool("Walking", true);
-                characterAnim.SetBool("Idle", false);
 
                 if (!boatDrivingScript.isDriving)
                 {
+                    characterAnim.SetBool("Walking", true);
+                    characterAnim.SetBool("Idle", false);
+                    characterAnim.SetBool("Sitting", false);
                     Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                     characterController.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
                 }
+
+                if (boatDrivingScript.isDriving)
+                {
+                    characterAnim.SetBool("Walking", false);
+                    characterAnim.SetBool("Idle", false);
+                    characterAnim.SetBool("Sitting", true);
+                }
+
             }
             else
             {
-                characterAnim.SetBool("Walking", false);
-                characterAnim.SetBool("Idle", true);
+                if (!boatDrivingScript.isDriving)
+                {
+                    characterAnim.SetBool("Walking", false);
+                    characterAnim.SetBool("Idle", true);
+                }
+                else
+                {
+                    characterAnim.SetBool("Walking", false);
+                    characterAnim.SetBool("Idle", false);
+                }
+                
                 if (!pauseSystem.gamePaused)
                 {
                     transform.rotation = Quaternion.Euler(0f, playerCamera.eulerAngles.y, 0f);
@@ -107,10 +128,11 @@ public class playerMovement : MonoBehaviour
                 canShoot = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.R) && !pauseSystem.gamePaused)
+            if (Input.GetKeyDown(KeyCode.R) && !pauseSystem.gamePaused && !boatDrivingScript.isDriving)
             {
                 if (currentBullets < clipSize)
                 {
+                    characterAnim.SetTrigger("Reload");
                     isReloading = true;
                     canShoot = false;
                     Reload();
@@ -123,7 +145,7 @@ public class playerMovement : MonoBehaviour
                 //Flash reload image
             }
 
-            if (Input.GetButtonDown("Fire1") && canShoot && hasAmmo && !isReloading && !pauseSystem.gamePaused)
+            if (Input.GetButtonDown("Fire1") && canShoot && hasAmmo && !isReloading && !pauseSystem.gamePaused && !boatDrivingScript.isDriving)
             {
                 characterAnim.SetTrigger("Shooting");
                 Instantiate(bullet, firePoint.position, playerCamera.transform.rotation, bulletParent.transform);
@@ -142,6 +164,16 @@ public class playerMovement : MonoBehaviour
                 reloadText.SetActive(false);
                 bulletText.color = Color.white;
             }
+
+            if (boatDrivingScript.isDriving)
+            {
+                bulletText.text = "∞";
+            }
+            else
+            {
+                bulletText.text = (currentBullets + "/" + clipSize);
+            }
+
         }
 
     }

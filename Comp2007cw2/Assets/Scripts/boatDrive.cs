@@ -11,6 +11,8 @@ public class boatDrive : MonoBehaviour
     public bool isDriving;
     public float turnSpeed;
 
+    public ParticleSystem waterParticles;
+
     public bool isOnWater;
 
     // Start is called before the first frame update
@@ -24,6 +26,18 @@ public class boatDrive : MonoBehaviour
     {
         if (isDriving && isOnWater)
         {
+            waterParticles.Play();
+            if (boatRb.velocity.x > 0.1f || boatRb.velocity.z > 0.1f)
+            {
+                var emissionModule = waterParticles.emission;
+                emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(50f); // Set to 50 particles per second
+            }
+            else
+            {
+                var emissionModule = waterParticles.emission;
+                emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(0f); // Set to 50 particles per second
+            }
+
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
                 Vector3 oldRot = boatForcePosition.localEulerAngles;
@@ -67,6 +81,10 @@ public class boatDrive : MonoBehaviour
                 boatForcePosition.localRotation = Quaternion.Euler(oldRot);
                 boatRb.AddForceAtPosition(boatForcePosition.transform.forward * speed * Time.deltaTime, boatForcePosition.position);
             }
+        }
+        else
+        {
+            waterParticles.Stop();
         }
     }
 

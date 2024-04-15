@@ -19,6 +19,9 @@ public class followPlayer : MonoBehaviour
     public GameObject cannonBall;
     public pauseManager pauseSystem;
 
+    public float shootInterval;
+    public float timeSinceShot;
+
     public void shootCannonBall()
     {
         Instantiate(cannonBall, shootPoint.position, shootPoint.rotation, cannonBallParent);
@@ -28,7 +31,7 @@ public class followPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        player = GameObject.Find("Sad Idle").transform;
+        player = GameObject.Find("Player").transform;
         cannonBallParent = GameObject.Find("cannonBalls").transform;
         pauseSystem = GameObject.Find("pauseManager").GetComponent<pauseManager>();
     }
@@ -46,9 +49,18 @@ public class followPlayer : MonoBehaviour
             enemy.speed = 10;
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (!pauseSystem.gamePaused)
         {
-            shootCannonBall();
+            timeSinceShot += Time.deltaTime;
+            if(timeSinceShot >= shootInterval)
+            {
+                shootCannonBall();
+                timeSinceShot = 0f;
+            }
+        }
+        else
+        {
+            timeSinceShot = 0f;
         }
 
         if (Vector3.Distance(transform.position, player.position) >= standingDistance && Vector3.Distance(transform.position, player.position) <= triggerDistance && !pauseSystem.gamePaused)

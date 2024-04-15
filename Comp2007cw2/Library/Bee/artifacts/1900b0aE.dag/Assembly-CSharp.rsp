@@ -365,11 +365,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/pauseManager.cs"
-"Assets/playerHealth.cs"
 "Assets/Scripts/boatDrive.cs"
 "Assets/Scripts/boatHealth.cs"
 "Assets/Scripts/boatInteract.cs"
+"Assets/Scripts/bulletDestruct.cs"
 "Assets/Scripts/cannonShot.cs"
 "Assets/Scripts/destroyObject.cs"
 "Assets/Scripts/DontDestroy.cs"
@@ -379,11 +378,15 @@
 "Assets/Scripts/HealthManager.cs"
 "Assets/Scripts/hideMouse.cs"
 "Assets/Scripts/MainMenu.cs"
+"Assets/Scripts/pauseManager.cs"
+"Assets/Scripts/playerHealth.cs"
 "Assets/Scripts/playerMovement.cs"
 "Assets/Scripts/playerPoints.cs"
 "Assets/Scripts/shooting.cs"
 "Assets/Scripts/thirdPersonRotation.cs"
+"Assets/Scripts/turretManager.cs"
 "Assets/Scripts/UiSelectSoundEffect.cs"
+"Assets/startGame.cs"
 -langversion:9.0
 
 /deterministic

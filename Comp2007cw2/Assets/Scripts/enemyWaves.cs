@@ -21,6 +21,7 @@ public class enemyWaves : MonoBehaviour
     public int currentWave;
 
     public bool isSpawning;
+    public bool gameStarted;
 
     public TextMeshProUGUI enemiesLeft;
 
@@ -39,10 +40,15 @@ public class enemyWaves : MonoBehaviour
         enemiesLeft.text = enemiesList.Count.ToString();
     }
 
+    public void startBattle()
+    {
+        gameStarted = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(enemiesList.Count == 0 && !isSpawning)
+        if(enemiesList.Count == 0 && !isSpawning && gameStarted)
         {
             isSpawning = true;
             newWave();

@@ -8,6 +8,9 @@ TagManager:
   - terrain
   - cannonBall
   - bullet
+  - playerCannon
+  - boat
+  - enemy
   layers:
   - Default
   - TransparentFX

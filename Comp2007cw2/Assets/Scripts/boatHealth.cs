@@ -30,6 +30,12 @@ public class boatHealth : MonoBehaviour
                 destroyBoat();
             }
         }
+
+        if (collision.gameObject.tag.Equals("playerCannon"))
+        {
+            destroyBoat();
+        }
+
     }
 
     public void destroyBoat()

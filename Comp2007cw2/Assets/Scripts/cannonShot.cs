@@ -10,6 +10,7 @@ public class cannonShot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cannonBallSpeed = Random.Range(cannonBallSpeed / 2, cannonBallSpeed * 2);
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * cannonBallSpeed, ForceMode.Impulse);
     }
