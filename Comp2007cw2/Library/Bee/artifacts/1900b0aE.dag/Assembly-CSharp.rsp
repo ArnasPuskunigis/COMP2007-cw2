@@ -335,6 +335,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Mathematics.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Mathematics.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.AddOns.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.AssetIdRemapUtility.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipeline.Universal.ShaderLibrary.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.Core.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.Core.Runtime.ref.dll"
@@ -375,6 +379,7 @@
 "Assets/Scripts/enemyWaves.cs"
 "Assets/Scripts/followPlayer.cs"
 "Assets/Scripts/goForward.cs"
+"Assets/Scripts/goToMainMenu.cs"
 "Assets/Scripts/HealthManager.cs"
 "Assets/Scripts/hideMouse.cs"
 "Assets/Scripts/MainMenu.cs"
@@ -383,10 +388,11 @@
 "Assets/Scripts/playerMovement.cs"
 "Assets/Scripts/playerPoints.cs"
 "Assets/Scripts/shooting.cs"
+"Assets/Scripts/startGame.cs"
 "Assets/Scripts/thirdPersonRotation.cs"
 "Assets/Scripts/turretManager.cs"
 "Assets/Scripts/UiSelectSoundEffect.cs"
-"Assets/startGame.cs"
+"Assets/Scripts/winnerUi.cs"
 -langversion:9.0
 
 /deterministic

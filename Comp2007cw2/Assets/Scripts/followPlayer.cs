@@ -22,10 +22,11 @@ public class followPlayer : MonoBehaviour
     public float shootInterval;
     public float timeSinceShot;
 
+    public AudioSource cannonShot;
     public void shootCannonBall()
     {
         Instantiate(cannonBall, shootPoint.position, shootPoint.rotation, cannonBallParent);
-        
+        cannonShot.Play();
     }
 
     // Start is called before the first frame update

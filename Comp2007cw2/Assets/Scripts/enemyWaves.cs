@@ -25,6 +25,8 @@ public class enemyWaves : MonoBehaviour
 
     public TextMeshProUGUI enemiesLeft;
 
+    public winnerUi winningUi;
+
 
     // Start is called before the first frame update
     void Start()
@@ -96,8 +98,8 @@ public class enemyWaves : MonoBehaviour
 
     public void winGame()
     {
+        winningUi.showPanel();
         enemiesLeft.text = "0";
-        print("winner");
     }
 
 

@@ -43,7 +43,8 @@ public class playerMovement : MonoBehaviour
 
     public Animator characterAnim;
 
-
+    public AudioSource shootSound;
+    public AudioSource reloadSound;
     void Start()
     {
         pauseSystem = GameObject.Find("pauseManager").GetComponent<pauseManager>();
@@ -152,6 +153,7 @@ public class playerMovement : MonoBehaviour
                 canShoot = false;
                 shootingIntervalTimer = 0f;
                 currentBullets -= 1;
+                shootSound.Play();
                 bulletText.text = (currentBullets + "/" + clipSize);
             }
             else if (!hasAmmo)
@@ -180,8 +182,8 @@ public class playerMovement : MonoBehaviour
 
     public void Reload()
     {
-        //Play animation
-        Invoke("UpdateBulletcount", 1);
+        reloadSound.Play();
+        Invoke("UpdateBulletcount", 2.2f);
     }
 
     public void UpdateBulletcount()

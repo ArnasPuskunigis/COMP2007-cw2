@@ -16,6 +16,8 @@ public class turretManager : MonoBehaviour
     public float timeBetweenShots;
     public bool canShoot;
 
+    public AudioSource cannonShoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class turretManager : MonoBehaviour
             if (Physics.Raycast(camForwardRay, out hit, 1000f))
             {
 
-                Instantiate(debugMarker, hit.point, turretTrans.rotation);
+                //Instantiate(debugMarker, hit.point, turretTrans.rotation);
                 Vector3 relativePosition = hit.point - turretTrans.position;
                 relativePosition.y = 0;
 
@@ -61,6 +63,7 @@ public class turretManager : MonoBehaviour
                 shootingIntervalTimer = 0f;
                 canShoot = false;
                 Instantiate(boatBullet, shootTrans.position, shootTrans.rotation);
+                cannonShoot.Play();
             }
 
         }
