@@ -25,8 +25,11 @@ public class enemyWaves : MonoBehaviour
 
     public TextMeshProUGUI enemiesLeft;
 
+    public int spawnerIndex;
+
     public winnerUi winningUi;
 
+    public int currentWaveNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -61,11 +64,17 @@ public class enemyWaves : MonoBehaviour
     {
         for (int i = 0; i < waveEnemyCount; i++)
         {
-            int temp = Random.Range(0, spawnPoints.Length - 1);
-            enemiesList.Add(Instantiate(enemyPref, spawnPoints[temp].position, spawnPoints[temp].rotation, enemyParent.transform));
+            float temp = Random.Range(5f, 10f);
+            Invoke("spawnEnemy", temp);
         }
-        enemiesLeft.text = waveEnemyCount.ToString();
+    }
+
+    public void spawnEnemy()
+    {
+        spawnerIndex = Random.Range(0, spawnPoints.Length - 1);
+        enemiesList.Add(Instantiate(enemyPref, spawnPoints[spawnerIndex].position, spawnPoints[spawnerIndex].rotation, enemyParent.transform));
         isSpawning = false;
+        enemiesLeft.text = currentWaveNumber.ToString();
     }
 
     public void newWave()
@@ -73,24 +82,28 @@ public class enemyWaves : MonoBehaviour
         if (currentWave == 0)
         {
             currentWave++;
+            currentWaveNumber = wave1EnemyCount;
             spawnNewWave(wave1EnemyCount);
         }
         else if (currentWave == 1)
         {
             currentWave++;
+            currentWaveNumber = wave2EnemyCount;
             spawnNewWave(wave2EnemyCount);
         }
         else if (currentWave == 2)
         {
             currentWave++;
+            currentWaveNumber = wave3EnemyCount;
             spawnNewWave(wave3EnemyCount);
         }
         else if (currentWave == 3)
         {
             currentWave++;
+            currentWaveNumber = wave4EnemyCount;
             spawnNewWave(wave4EnemyCount);
         }
-        else
+        else if(currentWave == 4)
         {
             winGame();
         }
@@ -101,6 +114,5 @@ public class enemyWaves : MonoBehaviour
         winningUi.showPanel();
         enemiesLeft.text = "0";
     }
-
 
 }

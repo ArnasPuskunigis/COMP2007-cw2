@@ -391,6 +391,7 @@
 "Assets/Scripts/startGame.cs"
 "Assets/Scripts/thirdPersonRotation.cs"
 "Assets/Scripts/turretManager.cs"
+"Assets/Scripts/tutorialManager.cs"
 "Assets/Scripts/UiSelectSoundEffect.cs"
 "Assets/Scripts/winnerUi.cs"
 -langversion:9.0

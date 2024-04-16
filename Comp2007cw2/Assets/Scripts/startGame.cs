@@ -12,6 +12,7 @@ public class startGame : MonoBehaviour
     public Animator npcAnim;
     public AudioSource headShot;
     public AudioSource dyingNoise;
+    public tutorialManager tutorialScript;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class startGame : MonoBehaviour
         if (playerInRange && Input.GetKeyDown(KeyCode.F))
         {
             interacted();
+            tutorialScript.hideSecondCp();
         }
     }
 
@@ -32,7 +34,7 @@ public class startGame : MonoBehaviour
     {
         npcAnim.SetTrigger("interacted");
         talking.Play();
-        Invoke("shootNpc", 1.76f);
+        Invoke("shootNpc", 3.24f);
     }
 
     public void shootNpc()
