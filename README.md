@@ -14,10 +14,13 @@ Controls: WASD for movement, Space for jump, F to interact, Mouse for looking ar
 I have used some assets from the internet such as sounds, animations, and 2D assets. Below are the links.
 
 2D assets:
+
 (textures)
 https://opengameart.org/textures/all 
+
 (sword icon)
 https://icon-icons.com/icon/pirate-blade-sword-ancient-saber-weapon-corsair/131596 
+
 (skull icon)
 https://www.clker.com/clipart-11180.html
 
