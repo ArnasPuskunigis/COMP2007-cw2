@@ -2,6 +2,14 @@
 
 This is my coursework 70% report.
 
+# Itch.io link:
+
+https://i7arkness.itch.io/cursed-treasure 
+
+# Youtube link:
+
+https://youtu.be/Km7s_B3zYWU
+
 # Installation guide: 
 To run the game, download and open the "CursedTreasure" folder and inside there open the "Cursed Treasure" exe file, this will launch the game.
 
