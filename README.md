@@ -4,6 +4,7 @@ This is my coursework 70% report.
 
 # Installation guide: 
 To run the game, download and open the "CursedTreasure" folder and inside there open the "Cursed Treasure" exe file, this will launch the game.
+
 To run the project, download and open the "Comp2007cw2" folder in the Unity Hub application, ensure that the version "Unity 2021.3.17f1" is installed otherwise you may be unable to run the project files
 
 # In-game controls: 
