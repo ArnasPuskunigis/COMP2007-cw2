@@ -16,7 +16,7 @@ I have used some assets from the internet such as sounds, animations, and 2D ass
 
 2D assets:
 
-(textures)
+(this website had all of the textures which I needed)
 https://opengameart.org/textures/all 
 
 (sword icon)
@@ -26,9 +26,9 @@ https://icon-icons.com/icon/pirate-blade-sword-ancient-saber-weapon-corsair/1315
 https://www.clker.com/clipart-11180.html
 
 Sounds assets:
-(This website had all of my soundeffects)
+(This website had all of the soundeffects which I needed)
 https://freesound.org/ 
 
 Animations:
-(This website had all of my character animations)
+(This website had all of the character animations which I needed)
 https://www.mixamo.com/ 
