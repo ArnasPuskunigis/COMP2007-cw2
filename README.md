@@ -1,6 +1,6 @@
 # COMP2007-cw2
 
-This is my courseword 70% report.
+This is my coursework 70% report.
 
 # Installation guide: 
 To run the game, open the "CursedTreasure" folder and inside there open the "Cursed Treasure" exe file, this will launch the game.
