@@ -13,6 +13,7 @@ public class winnerUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         resumeButton.onClick.AddListener(hidePanel);
     }
 
@@ -24,11 +25,15 @@ public class winnerUi : MonoBehaviour
 
     public void hidePanel()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         winPanel.SetActive(false);
     }
 
     public void showPanel()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         winPanel.SetActive(true);
     }
 

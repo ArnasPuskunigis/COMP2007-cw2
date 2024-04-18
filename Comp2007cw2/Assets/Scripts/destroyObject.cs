@@ -10,6 +10,7 @@ public class destroyObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Destroy the object after a specified time of it spawning
         Destroy(gameObject, time);           
     }
 

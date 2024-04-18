@@ -3,7 +3,47 @@ guid: 467538a416c7f3345bb8c132a4149af7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DockPoles
+    second: {fileID: 2100000, guid: 0f0d3fd3823a62641b54a097baa6b67d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DockWood
+    second: {fileID: 2100000, guid: efd645d29ae6f004f82b1c218ee24de6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: 27175748bfc1aa44aa738ae07ae4b363, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: House
+    second: {fileID: 2100000, guid: c8f780dcc6ed5f64199fc52839af6dc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 4062d2c8b11450a4abd3b4e1cead963a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plank
+    second: {fileID: 2100000, guid: 5f199caebe0f71248b538431a4194e28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: 40985dfca9e235c4eb07c09670fff45f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WindowCovers
+    second: {fileID: 2100000, guid: cf394857160fe15469e46b09fa194793, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -18,6 +18,7 @@ public class bulletDestruct : MonoBehaviour
         
     }
 
+    //Ensure that the rigid body is added to the script before the first frame
     void Awake()
     {
         bulletRb = gameObject.GetComponent<Rigidbody>();
@@ -29,8 +30,10 @@ public class bulletDestruct : MonoBehaviour
         
     }
 
+    //Check if the bullet has collided with anything other than the ignored tag
     private void OnCollisionEnter(Collision collision)
     {
+        //Once the bullet has collided, spawn the bullet explosion particles and disable any further movement of the bullet
         if (!collision.transform.tag.Equals(ignoreTag))
         {
             bulletCollider.enabled = false;
@@ -41,6 +44,7 @@ public class bulletDestruct : MonoBehaviour
         }
     }
 
+    //Destroy the bullet object
     public void DestroyObject()
     {
         Destroy(gameObject);

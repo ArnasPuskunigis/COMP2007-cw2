@@ -10,7 +10,6 @@ public class enemyWaves : MonoBehaviour
     public int wave1EnemyCount;
     public int wave2EnemyCount;
     public int wave3EnemyCount;
-    public int wave4EnemyCount;
 
     public List<GameObject> enemiesList;
     public GameObject enemyPref;
@@ -31,15 +30,19 @@ public class enemyWaves : MonoBehaviour
 
     public int currentWaveNumber;
 
+    public AudioSource winSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Sets the wave to 0 so no enemies spawn and the enemy text to nothing as there should be no enemies at the start
         currentWave = 0;
         enemiesLeft.text = "";
     }
 
     public void removeEnemy(GameObject enemy)
     {
+        //Removes an enemy from the enemy list and then destroys the enemy object and updates enemy count
         enemiesList.Remove(enemy);
         Destroy(enemy);
         enemiesLeft.text = enemiesList.Count.ToString();
@@ -47,12 +50,14 @@ public class enemyWaves : MonoBehaviour
 
     public void startBattle()
     {
+        //This is used to start the enemy waves
         gameStarted = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Check if to spawn enemies
         if(enemiesList.Count == 0 && !isSpawning && gameStarted)
         {
             isSpawning = true;
@@ -62,6 +67,7 @@ public class enemyWaves : MonoBehaviour
 
     public void spawnNewWave(int waveEnemyCount)
     {
+        //Generate a time at which to spawn an enemy and then spawn that enemy after "temp" time has passed
         for (int i = 0; i < waveEnemyCount; i++)
         {
             float temp = Random.Range(5f, 10f);
@@ -71,14 +77,17 @@ public class enemyWaves : MonoBehaviour
 
     public void spawnEnemy()
     {
+        //Spawn an enemy at a random spawnpoint from the list
         spawnerIndex = Random.Range(0, spawnPoints.Length - 1);
         enemiesList.Add(Instantiate(enemyPref, spawnPoints[spawnerIndex].position, spawnPoints[spawnerIndex].rotation, enemyParent.transform));
+        //This is used to make sure that no enemies are spawned after the initial set of enemies has been spawned
         isSpawning = false;
         enemiesLeft.text = currentWaveNumber.ToString();
     }
 
     public void newWave()
     {
+        //Checks the current wave and updates the wave spawning variables accordigly 
         if (currentWave == 0)
         {
             currentWave++;
@@ -99,18 +108,15 @@ public class enemyWaves : MonoBehaviour
         }
         else if (currentWave == 3)
         {
-            currentWave++;
-            currentWaveNumber = wave4EnemyCount;
-            spawnNewWave(wave4EnemyCount);
-        }
-        else if(currentWave == 4)
-        {
             winGame();
         }
+        
     }
 
     public void winGame()
     {
+        //Plays the winning sound and shows the wining ui
+        winSound.Play();
         winningUi.showPanel();
         enemiesLeft.text = "0";
     }

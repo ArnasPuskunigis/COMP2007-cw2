@@ -13,11 +13,13 @@ public class goToMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //If the exit button is pressed launch the loadMainMenu function
         exitButton.onClick.AddListener(loadMainMenu);
     }
 
     public void loadMainMenu()
     {
+        //Load the main menu
         SceneManager.LoadScene(0);
     }
 

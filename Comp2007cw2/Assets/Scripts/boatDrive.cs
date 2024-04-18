@@ -15,6 +15,8 @@ public class boatDrive : MonoBehaviour
 
     public bool isOnWater;
 
+    public boatInteract interactScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +26,10 @@ public class boatDrive : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Check that the boat is being driven and if the water is colliding with the water
         if (isDriving && isOnWater)
         {
+            // Play the water particles based on if the boat is moving or not
             waterParticles.Play();
             if (boatRb.velocity.x > 0.1f || boatRb.velocity.z > 0.1f)
             {
@@ -35,9 +39,10 @@ public class boatDrive : MonoBehaviour
             else
             {
                 var emissionModule = waterParticles.emission;
-                emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(0f); // Set to 50 particles per second
+                emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(0f); // Set to 0 particles per second
             }
 
+            // Add forces to the boat based on the user input
             if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
             {
                 Vector3 oldRot = boatForcePosition.localEulerAngles;
@@ -90,6 +95,7 @@ public class boatDrive : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Check if boat has "triggered" the water
         if (other.tag.Equals("water"))
         {
             isOnWater = true;
@@ -98,6 +104,7 @@ public class boatDrive : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //Check if boat has "untriggered" the water
         if (other.tag.Equals("water"))
         {
             isOnWater = false;

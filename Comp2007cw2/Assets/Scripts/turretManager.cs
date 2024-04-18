@@ -32,11 +32,9 @@ public class turretManager : MonoBehaviour
             Ray camForwardRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
             RaycastHit hit;
 
-            // Perform the raycast
+            // IF the raycast hits something rotate the turret to the hit point 
             if (Physics.Raycast(camForwardRay, out hit, 1000f))
             {
-
-                //Instantiate(debugMarker, hit.point, turretTrans.rotation);
                 Vector3 relativePosition = hit.point - turretTrans.position;
                 relativePosition.y = 0;
 
@@ -47,10 +45,10 @@ public class turretManager : MonoBehaviour
                 Quaternion targetRotation = Quaternion.Euler(0f, angleToPlayer + 90, 0f);
                 turretTrans.rotation = targetRotation;
 
-                //Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 100f, Color.red, 0.5f);
-
             }
 
+
+            //If player can shoot and shoots then spawn the bullet and play the cannon shoot sound
             shootingIntervalTimer += Time.deltaTime;
 
             if (shootingIntervalTimer >= timeBetweenShots)

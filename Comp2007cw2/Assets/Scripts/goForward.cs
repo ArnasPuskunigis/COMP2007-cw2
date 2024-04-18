@@ -11,6 +11,7 @@ public class goForward : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Add force to push the bullet forward as soon as it is spawned and add speed based on inspector input
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
     }

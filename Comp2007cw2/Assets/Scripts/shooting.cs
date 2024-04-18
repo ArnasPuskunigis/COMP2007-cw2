@@ -24,6 +24,8 @@ public class shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Used for the cannon shooting same as other reload systems in the project
         shootingIntervalTimer += Time.deltaTime;
 
         if(shootingIntervalTimer >= timeBetweenShots)

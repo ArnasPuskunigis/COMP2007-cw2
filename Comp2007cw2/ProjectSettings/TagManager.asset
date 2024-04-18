@@ -11,6 +11,8 @@ TagManager:
   - playerCannon
   - boat
   - enemy
+  - sand
+  - wood
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class pauseManager : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class pauseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Locks the cursor so the player can see their crosshair
         Cursor.lockState = CursorLockMode.Locked;
         resumeButton.onClick.AddListener(onResumeButtonPressed);
         exitButton.onClick.AddListener(onExitButtonPressed);
@@ -26,20 +27,28 @@ public class pauseManager : MonoBehaviour
 
     public void onResumeButtonPressed()
     {
+        //Resets the pause setting
         pauseMenu.SetActive(false);
+
         gamePaused = false;
         cameraRotationComponent.enabled = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void onExitButtonPressed()
     {
-        EditorSceneManager.LoadScene(0);
+        //Loads the main menu
+        SceneManager.LoadScene(0);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //Accordingly activates the pause menu and unlocks/locks the mouse cursor
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gamePaused)

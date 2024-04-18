@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerHealth : MonoBehaviour
 {
@@ -27,9 +28,9 @@ public class playerHealth : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.tag.Equals("cannonBall"))
+        if (other.tag.Equals("cannonBall"))
         {
             health -= 10;
             characterAnim.SetTrigger("Shot");
@@ -46,9 +47,9 @@ public class playerHealth : MonoBehaviour
 
     public void playerDead()
     {
-        print("you died");
-        gameOverPanel.SetActive(true);
-        Invoke("destroyPlayer()", 1);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene(2);
     }
 
     public void destroyPlayer()

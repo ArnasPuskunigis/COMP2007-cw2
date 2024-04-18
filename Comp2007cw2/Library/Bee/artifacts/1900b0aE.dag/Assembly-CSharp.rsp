@@ -381,7 +381,6 @@
 "Assets/Scripts/goForward.cs"
 "Assets/Scripts/goToMainMenu.cs"
 "Assets/Scripts/HealthManager.cs"
-"Assets/Scripts/hideMouse.cs"
 "Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/pauseManager.cs"
 "Assets/Scripts/playerHealth.cs"

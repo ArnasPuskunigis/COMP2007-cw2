@@ -20,28 +20,65 @@ public class boatInteract : MonoBehaviour
     public TextMeshProUGUI getInText;
     public TextMeshProUGUI getOutText;
 
+    public AudioSource genInSound;
+    public AudioSource engineSound;
+
+    public bool gotInBoatBool;
+    public bool engineOn;
 
     void Update()
     {
+        //if the player is in range and press F and the boat is not being driven, then put the player in the boat
         if (playerInRange && Input.GetKeyDown(KeyCode.F) && !boatDriveScript.isDriving)
         {
             boatDriveScript.isDriving = true;
             playerCollider.isTrigger = true;
+            if (!gotInBoatBool)
+            {
+                gotInBoat();
+            }
         }
+        //Otherwise take the player out of the boat
         else if (playerInRange && Input.GetKeyDown(KeyCode.F) && boatDriveScript.isDriving)
         {
             boatDriveScript.isDriving = false;
             playerCollider.isTrigger = true;
+            pauseEngineNoise();
         }
 
+        //Teleport the player onto the boat every frame
         if (boatDriveScript.isDriving)
         {
             charController.enabled = false;
             player.transform.position = playerSitPos.position;
-            charController.enabled = true;           
+        }
+        else
+        {
+            charController.enabled = true;
         }
     }
 
+    //Functions for starting and pausing the boat sounds 
+    public void gotInBoat()
+    {
+        gotInBoatBool = true;
+        genInSound.Play();
+        Invoke("playEngineNoise", 2f);
+    }
+
+    public void playEngineNoise()
+    {
+        engineOn = true;
+        engineSound.Play();
+    }
+
+    public void pauseEngineNoise()
+    {
+        gotInBoatBool = false;
+        engineSound.Pause();
+    }
+
+    // Check if the player is in range by entering the trigger around the boat
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player") && boatDriveScript.isDriving)
@@ -58,6 +95,7 @@ public class boatInteract : MonoBehaviour
         }
     }
 
+    // Check if the player has gone out range by exitting the trigger around the boat
     private void OnTriggerExit(Collider other)
     {
         if (other.tag.Equals("Player"))

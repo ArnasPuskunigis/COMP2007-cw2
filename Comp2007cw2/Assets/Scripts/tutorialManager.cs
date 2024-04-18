@@ -24,6 +24,7 @@ public class tutorialManager : MonoBehaviour
         
     }
 
+    //Tutorial script - If the player goes on the cylinder then disable the tutorial text
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player") && gameObject.transform.name.Equals("Cylinder"))
